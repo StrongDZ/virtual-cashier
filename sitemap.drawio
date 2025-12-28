@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="sitemap" name="Virtual Cashier Sitemap">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Root Node: Home -->
+        <mxCell id="home" value="Home" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2F5D62;strokeColor=#1A3A3D;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="450" y="40" width="200" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Dynamic/Content Branches (Green/Dashed) -->
+        <mxCell id="scanner" value="Scanner" style="whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#228B22;strokeWidth=2;dashed=1;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="catalogue" value="Catalogue" style="whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#228B22;strokeWidth=2;dashed=1;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="200" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="tryon" value="Try On" style="whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#228B22;strokeWidth=2;dashed=1;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="200" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="payment" value="Payment" style="whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#228B22;strokeWidth=2;dashed=1;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="680" y="200" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="return" value="Return" style="whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#228B22;strokeWidth=2;dashed=1;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="880" y="200" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Static/Info Branches (Blue/Solid) -->
+        <mxCell id="signup" value="Signup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9AC7F9;strokeColor=#4682B4;strokeWidth=2;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="320" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="help" value="Help" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9AC7F9;strokeColor=#4682B4;strokeWidth=2;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="680" y="320" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Connections from Home to Dynamic/Content Branches -->
+        <mxCell id="edge1" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="home" target="scanner">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="300" as="sourcePoint" />
+            <mxPoint x="550" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="edge2" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="home" target="catalogue">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="300" as="sourcePoint" />
+            <mxPoint x="550" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="edge3" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="home" target="tryon">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="300" as="sourcePoint" />
+            <mxPoint x="550" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="edge4" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="home" target="payment">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="300" as="sourcePoint" />
+            <mxPoint x="550" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="edge5" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="home" target="return">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="300" as="sourcePoint" />
+            <mxPoint x="550" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Connections from Home to Static/Info Branches -->
+        <mxCell id="edge6" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="home" target="signup">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="300" as="sourcePoint" />
+            <mxPoint x="550" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="edge7" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="home" target="help">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="300" as="sourcePoint" />
+            <mxPoint x="550" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

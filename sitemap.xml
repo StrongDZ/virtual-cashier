@@ -1,0 +1,264 @@
+<mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="2400" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    
+    <!-- Root Node: Home -->
+    <mxCell id="home" value="Home" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2F5D62;strokeColor=none;fontColor=#FFFFFF;fontStyle=1;fontSize=20;" vertex="1" parent="1">
+      <mxGeometry x="700" y="40" width="200" height="80" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 1: Informational Pages (Left Side) -->
+    <!-- Signup -->
+    <mxCell id="signup" value="Signup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9AC7F9;strokeColor=#4A90E2;fontSize=16;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="200" y="200" width="160" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 1: Transactional Pages (Center) -->
+    <!-- Scanner -->
+    <mxCell id="scanner" value="Scanner" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=16;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="400" y="200" width="160" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- Catalogue -->
+    <mxCell id="catalogue" value="Catalogue" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=16;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="600" y="200" width="160" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- Try-On -->
+    <mxCell id="tryon" value="Try-On" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=16;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="800" y="200" width="160" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- Payment -->
+    <mxCell id="payment" value="Payment" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=16;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1000" y="200" width="160" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- Return -->
+    <mxCell id="return" value="Return" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=16;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1200" y="200" width="160" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 1: Informational Pages (Right Side) -->
+    <!-- Help -->
+    <mxCell id="help" value="Help" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9AC7F9;strokeColor=#4A90E2;fontSize=16;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1400" y="200" width="160" height="60" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 2: Scanner Sub-pages -->
+    <mxCell id="scanner_cart" value="Floating Cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="400" y="320" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="scanner_voice" value="Voice Modal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="400" y="390" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 2: Catalogue Sub-pages -->
+    <mxCell id="catalogue_filter" value="Filter Modal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="600" y="320" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="catalogue_addcart" value="Add to Cart Modal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="600" y="390" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="catalogue_detail" value="Product Detail Modal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="600" y="460" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="catalogue_cart" value="Floating Cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="600" y="530" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="catalogue_voice" value="Voice Modal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="600" y="600" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 2: Try-On Sub-pages -->
+    <mxCell id="tryon_addcart" value="Add to Cart Modal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="800" y="320" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="tryon_cart" value="Floating Cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="800" y="390" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 2: Payment Sub-pages -->
+    <mxCell id="payment_processing" value="Payment Processing" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1000" y="320" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="payment_success" value="Payment Success" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1000" y="390" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="payment_cart" value="Floating Cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1000" y="460" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 2: Return Sub-pages -->
+    <mxCell id="return_step1" value="Step 1: Scan Receipt" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1200" y="320" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="return_step2" value="Step 2: Select Items" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1200" y="390" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="return_step3" value="Step 3: Confirmation" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1200" y="460" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 2: Home Sub-pages -->
+    <mxCell id="home_addcart" value="Add to Cart Modal" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="700" y="320" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="home_cart" value="Floating Cart" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="700" y="390" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 2: Help Sub-pages -->
+    <mxCell id="help_modal" value="Help Modal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9AC7F9;strokeColor=#4A90E2;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="1400" y="320" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Level 2: Signup Sub-pages (none) -->
+    
+    <!-- Global Modals (Accessible from anywhere) -->
+    <mxCell id="global_help" value="Help Modal (Global)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9AC7F9;strokeColor=#4A90E2;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="200" y="320" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="global_cart" value="Floating Cart (Global)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#98FB98;strokeColor=#2E8B57;dashed=1;fontSize=14;fontStyle=0" vertex="1" parent="1">
+      <mxGeometry x="200" y="390" width="160" height="50" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Home to Level 1 -->
+    <mxCell id="edge_home_scanner" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="scanner">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_home_catalogue" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="catalogue">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_home_tryon" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="tryon">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_home_payment" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="payment">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_home_return" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="return">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_home_signup" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="signup">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_home_help" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="help">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connector from Payment Success to Home (return flow) -->
+    <mxCell id="edge_payment_success_home" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;dashed=1;strokeColor=#666666;" edge="1" parent="1" source="payment_success" target="home">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Level 1 to Level 2 - Scanner -->
+    <mxCell id="edge_scanner_cart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="scanner" target="scanner_cart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_scanner_voice" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="scanner" target="scanner_voice">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Level 1 to Level 2 - Catalogue -->
+    <mxCell id="edge_catalogue_filter" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="catalogue" target="catalogue_filter">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_catalogue_addcart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="catalogue" target="catalogue_addcart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_catalogue_detail" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="catalogue" target="catalogue_detail">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_catalogue_cart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="catalogue" target="catalogue_cart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_catalogue_voice" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="catalogue" target="catalogue_voice">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Level 1 to Level 2 - Try-On -->
+    <mxCell id="edge_tryon_addcart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="tryon" target="tryon_addcart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_tryon_cart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="tryon" target="tryon_cart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Level 1 to Level 2 - Payment -->
+    <mxCell id="edge_payment_processing" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="payment" target="payment_processing">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_payment_success" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="payment" target="payment_success">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_payment_cart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="payment" target="payment_cart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Level 1 to Level 2 - Return -->
+    <mxCell id="edge_return_step1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="return" target="return_step1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_return_step2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="return" target="return_step2">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_return_step3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="return" target="return_step3">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Level 1 to Level 2 - Home -->
+    <mxCell id="edge_home_addcart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="home_addcart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="edge_home_cart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="home" target="home_cart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Level 1 to Level 2 - Help -->
+    <mxCell id="edge_help_modal" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;" edge="1" parent="1" source="help" target="help_modal">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Signup to Global -->
+    <mxCell id="edge_signup_global_help" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1" source="signup" target="global_help">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <!-- Connectors from Home to Global -->
+    <mxCell id="edge_home_global_cart" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.5;endArrow=block;endFill=1;dashed=1;" edge="1" parent="1" source="home" target="global_cart">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+  </root>
+</mxGraphModel>
+
