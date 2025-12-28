@@ -46,7 +46,7 @@ const AppContent = () => {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/virtual-cashier"> {/* Thay bằng tên repo thực tế của bạn trên GitHub */}
       <AppProvider>
         <ToastProvider>
           <AppContent />
