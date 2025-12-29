@@ -7,12 +7,14 @@ interface AppContextType {
   cart: CartItem[];
   user: User | null;
   receipts: Receipt[];
+  users: User[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (productId: string, size?: string) => void;
   updateCartQuantity: (productId: string, quantity: number, size?: string) => void;
   clearCart: () => void;
   setUser: (user: User | null) => void;
-  simulateMemberApproach: () => void;
+  signIn: (phone: string, password: string) => User | null;
+  registerUser: (user: User) => void;
   addReceipt: (receipt: Receipt) => void;
 }
 
@@ -22,6 +24,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [user, setUser] = useState<User | null>(null);
   const [receipts, setReceipts] = useState<Receipt[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   const addToCart = (item: CartItem) => {
     setCart((prev) => {
@@ -72,12 +75,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setCart([]);
   };
 
-  const simulateMemberApproach = () => {
-    // Simulate recognizing a member (Quang - Gold Member)
-    const member = mockUsers.find((u) => u.membershipLevel === 'gold');
-    if (member) {
-      setUser(member);
+  const signIn = (phone: string, password: string): User | null => {
+    const foundUser = users.find((u) => u.phone === phone && u.password === password);
+    if (foundUser) {
+      setUser(foundUser);
+      return foundUser;
     }
+    return null;
+  };
+
+  const registerUser = (newUser: User) => {
+    setUsers((prev) => [...prev, newUser]);
+    setUser(newUser);
   };
 
   const addReceipt = (receipt: Receipt) => {
@@ -90,12 +99,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         cart,
         user,
         receipts,
+        users,
         addToCart,
         removeFromCart,
         updateCartQuantity,
         clearCart,
         setUser,
-        simulateMemberApproach,
+        signIn,
+        registerUser,
         addReceipt,
       }}
     >

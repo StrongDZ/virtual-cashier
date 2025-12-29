@@ -10,7 +10,7 @@ import AddToCartModal from '../components/ui/AddToCartModal';
 import { useToast } from '../components/ui/ToastProvider';
 
 const Home = () => {
-  const { user, simulateMemberApproach, addToCart } = useApp();
+  const { user, addToCart } = useApp();
   const { showToast } = useToast();
   const recommendations = user ? getRecommendations(user.membershipLevel) : [];
   const [productToAdd, setProductToAdd] = useState<any>(null);
@@ -121,20 +121,6 @@ const Home = () => {
               <p className="text-xl md:text-2xl text-gray-200 max-w-2xl">
                 Experience luxury shopping with our virtual cashier kiosk
               </p>
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                <Button
-                  variant="primary"
-                  size="xl"
-                  onClick={simulateMemberApproach}
-                  className="mt-6"
-                >
-                  Simulate Member Approach
-                </Button>
-              </motion.div>
             </motion.div>
           )}
         </div>

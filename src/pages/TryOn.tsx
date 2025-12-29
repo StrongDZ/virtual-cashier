@@ -5,6 +5,7 @@ import { mockProducts } from '../data/MockData';
 import type { Product } from '../data/MockData';
 import Button from '../components/ui/Button';
 import AddToCartModal from '../components/ui/AddToCartModal';
+import BackButton from '../components/ui/BackButton';
 import { useApp } from '../context/AppContext';
 import { useToast } from '../components/ui/ToastProvider';
 
@@ -27,6 +28,9 @@ const TryOn = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
+      <div className="mb-6">
+        <BackButton />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

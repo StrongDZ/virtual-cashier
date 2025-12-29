@@ -8,6 +8,7 @@ import ProductCard from '../components/ui/ProductCard';
 import Button from '../components/ui/Button';
 import AddToCartModal from '../components/ui/AddToCartModal';
 import FilterModal from '../components/ui/FilterModal';
+import BackButton from '../components/ui/BackButton';
 import { useApp } from '../context/AppContext';
 import { useToast } from '../components/ui/ToastProvider';
 
@@ -74,6 +75,9 @@ const Catalogue = () => {
 
   return (
     <div className="max-w-7xl mx-auto">
+      <div className="mb-6">
+        <BackButton />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

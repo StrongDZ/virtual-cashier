@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { HelpCircle, ShoppingCart } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { HelpCircle, ShoppingCart, User } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import HelpModal from "./HelpModal";
@@ -12,10 +12,10 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-    const location = useLocation();
+    const navigate = useNavigate();
     const [showHelp, setShowHelp] = useState(false);
     const [showCart, setShowCart] = useState(false);
-    const { cart } = useApp();
+    const { cart, user } = useApp();
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
@@ -33,16 +33,27 @@ const Layout = ({ children }: LayoutProps) => {
                             VIRTUAL CASHIER
                         </Link>
                         <div className="flex items-center gap-4">
-                            {location.pathname !== "/" && (
-                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                    <Link
-                                        to="/"
-                                        className="glass px-6 py-3 rounded-xl text-white hover:bg-white/20 text-lg font-semibold transition-all"
-                                    >
-                                        Home
-                                    </Link>
+                            {/* Account Icon */}
+                            <button onClick={() => navigate("/account")} className="relative">
+                                <motion.div
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className={`px-4 py-3 rounded-xl transition-all cursor-pointer shadow-lg ${
+                                        user
+                                            ? 'bg-gradient-to-r from-accent to-accent-dark text-white hover:from-accent-light hover:to-accent'
+                                            : 'glass text-white hover:bg-white/20'
+                                    }`}
+                                >
+                                    <User size={24} />
+                                    {user && (
+                                        <motion.span
+                                            initial={{ scale: 0 }}
+                                            animate={{ scale: 1 }}
+                                            className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-slate-900"
+                                        />
+                                    )}
                                 </motion.div>
-                            )}
+                            </button>
                             {/* Cart Icon in Header */}
                             <button onClick={() => setShowCart(true)} className="relative">
                                 <motion.div

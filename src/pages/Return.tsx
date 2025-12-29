@@ -5,6 +5,7 @@ import { useApp } from '../context/AppContext';
 import { useToast } from '../components/ui/ToastProvider';
 import type { CartItem } from '../data/MockData';
 import Button from '../components/ui/Button';
+import BackButton from '../components/ui/BackButton';
 
 const Return = () => {
   const { receipts } = useApp();
@@ -74,6 +75,9 @@ const Return = () => {
 
   return (
     <div className="max-w-4xl mx-auto">
+      <div className="mb-6">
+        <BackButton />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

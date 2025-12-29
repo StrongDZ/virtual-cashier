@@ -2,6 +2,7 @@ import { MessageSquare, HelpCircle, Search, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Button from '../components/ui/Button';
+import BackButton from '../components/ui/BackButton';
 
 const Help = () => {
   const [messages, setMessages] = useState([
@@ -94,6 +95,9 @@ const Help = () => {
 
   return (
     <div className="max-w-6xl mx-auto">
+      <div className="mb-6">
+        <BackButton />
+      </div>
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -256,6 +260,7 @@ const Help = () => {
 };
 
 export default Help;
+
 
 
 
