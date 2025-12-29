@@ -12,11 +12,14 @@ import Signup from "./pages/Signup";
 import TryOn from "./pages/TryOn";
 import Account from "./pages/Account";
 
+// Base path for GitHub Pages deployment
+const basename = import.meta.env.BASE_URL;
+
 function App() {
     return (
         <AppProvider>
             <ToastProvider>
-                <BrowserRouter>
+                <BrowserRouter basename={basename}>
                     <Layout>
                         <Routes>
                             <Route path="/" element={<Home />} />
