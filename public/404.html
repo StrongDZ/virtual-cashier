@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // Single Page Apps for GitHub Pages
+        // This script redirects all 404s to the main index.html
+        // preserving the path for client-side routing
+        const segment = 1; // Adjust if your repo is not in the root
+        const pathSegmentsToKeep = window.location.pathname.split('/').slice(0, segment + 1).join('/');
+        const remainingPath = window.location.pathname.slice(pathSegmentsToKeep.length);
+        const search = window.location.search;
+        const hash = window.location.hash;
+        
+        // Redirect to index.html with the path stored in sessionStorage
+        sessionStorage.setItem('redirect', remainingPath + search + hash);
+        window.location.replace(pathSegmentsToKeep + '/');
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
+
