@@ -25,7 +25,9 @@ const AccountModal = ({ onClose }: AccountModalProps) => {
         const newUser = {
             id: Date.now().toString(),
             name: formData.name,
+            email: "",
             phone: formData.phone,
+            password: "",
             membershipLevel: "silver" as const,
             faceIdEnrolled: false,
         };

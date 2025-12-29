@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 import type { CartItem, User, Receipt } from '../data/MockData';
-import { mockUsers } from '../data/MockData';
 
 interface AppContextType {
   cart: CartItem[];

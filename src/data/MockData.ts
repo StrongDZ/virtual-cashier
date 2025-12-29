@@ -138,14 +138,18 @@ export const mockUsers: User[] = [
   {
     id: '1',
     name: 'Quang',
+    email: 'quang@example.com',
     phone: '+84123456789',
+    password: 'password123',
     membershipLevel: 'gold',
     faceIdEnrolled: true,
   },
   {
     id: '2',
     name: 'Sarah',
+    email: 'sarah@example.com',
     phone: '+84987654321',
+    password: 'password123',
     membershipLevel: 'silver',
     faceIdEnrolled: true,
   },
