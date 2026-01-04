@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Package, X, Search, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -33,6 +33,28 @@ const Catalogue = () => {
       setter([...selected, value]);
     }
   };
+
+  // Listen for voice filter commands
+  useEffect(() => {
+    const handleVoiceFilter = (event: CustomEvent<{ gender: string }>) => {
+      const { gender } = event.detail;
+      if (gender === 'men') {
+        setSelectedCategory(['Men']);
+        showToast('Showing men\'s clothing', 'info');
+      } else if (gender === 'women') {
+        setSelectedCategory(['Women']);
+        showToast('Showing women\'s clothing', 'info');
+      } else if (gender === 'all') {
+        setSelectedCategory([]);
+        showToast('Showing all products', 'info');
+      }
+    };
+
+    window.addEventListener('voice-filter', handleVoiceFilter as EventListener);
+    return () => {
+      window.removeEventListener('voice-filter', handleVoiceFilter as EventListener);
+    };
+  }, [showToast]);
 
   const filteredProducts = mockProducts.filter((product) => {
     const categoryMatch = 
@@ -123,6 +145,29 @@ const Catalogue = () => {
           </motion.button>
         </div>
       </motion.div>
+
+      {/* Active Filter Indicator */}
+      {selectedCategory.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          className="mb-4 flex items-center gap-2"
+        >
+          <span className="text-gray-400">Showing:</span>
+          {selectedCategory.map(cat => (
+            <span key={cat} className="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm font-medium">
+              {cat}
+            </span>
+          ))}
+          <button 
+            onClick={() => setSelectedCategory([])}
+            className="text-gray-400 hover:text-white text-sm underline"
+          >
+            Clear
+          </button>
+        </motion.div>
+      )}
 
       {/* Product Grid */}
       <AnimatePresence mode="wait">

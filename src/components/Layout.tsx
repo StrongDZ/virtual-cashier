@@ -1,11 +1,14 @@
 import type { ReactNode } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { HelpCircle, ShoppingCart, User } from "lucide-react";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import HelpModal from "./HelpModal";
 import FloatingCart from "./FloatingCart";
+import VoiceStatusBar from "./VoiceStatusBar";
+import InteractionModeIndicator from "./InteractionModeIndicator";
 import { useApp } from "../context/AppContext";
+import { useVoice } from "../context/VoiceContext";
 
 interface LayoutProps {
     children: ReactNode;
@@ -13,10 +16,15 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [showHelp, setShowHelp] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const { cart, user } = useApp();
+    const { interactionMode } = useVoice();
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // Hide help button when on help page
+    const isOnHelpPage = location.pathname === '/help' || location.pathname.includes('/help');
 
     return (
         <div className="min-h-screen flex flex-col bg-slate-900">
@@ -33,6 +41,9 @@ const Layout = ({ children }: LayoutProps) => {
                             VIRTUAL CASHIER
                         </Link>
                         <div className="flex items-center gap-4">
+                            {/* Interaction Mode Indicator */}
+                            <InteractionModeIndicator />
+
                             {/* Account Icon */}
                             <button onClick={() => navigate("/account")} className="relative">
                                 <motion.div
@@ -78,8 +89,17 @@ const Layout = ({ children }: LayoutProps) => {
                 </div>
             </motion.header>
 
-            {/* Main Content */}
-            <main className="flex-1 container mx-auto px-6 py-8 w-full">{children}</main>
+            {/* Voice Status Bar - Shows when in voice-touch mode */}
+            <AnimatePresence>
+                {interactionMode === 'voice-touch' && <VoiceStatusBar />}
+            </AnimatePresence>
+
+            {/* Main Content - Add padding top when voice bar is visible */}
+            <main className={`flex-1 container mx-auto px-6 py-8 w-full ${
+                interactionMode === 'voice-touch' ? 'pt-24' : ''
+            }`}>
+                {children}
+            </main>
 
             {/* Footer */}
             <footer className="glass-dark border-t border-white/10 py-6 mt-auto">
@@ -88,22 +108,29 @@ const Layout = ({ children }: LayoutProps) => {
                 </div>
             </footer>
 
-            {/* Floating Help Button */}
-            <motion.button
-                onClick={() => setShowHelp(true)}
-                className="fixed bottom-8 right-8 bg-gradient-to-r from-accent to-accent-dark text-slate-900 rounded-full p-6 shadow-2xl z-50 touch-target"
-                aria-label="Help"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ type: "spring", delay: 0.5 }}
-            >
-                <HelpCircle size={32} />
-            </motion.button>
+            {/* Floating Help Button - Hidden on Help page */}
+            <AnimatePresence>
+                {!isOnHelpPage && (
+                    <motion.button
+                        onClick={() => setShowHelp(true)}
+                        className="fixed bottom-8 right-8 bg-gradient-to-r from-accent to-accent-dark text-slate-900 rounded-full p-6 shadow-2xl z-50 touch-target"
+                        aria-label="Help"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        whileTap={{ scale: 0.95 }}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        exit={{ scale: 0 }}
+                        transition={{ type: "spring", delay: 0.5 }}
+                    >
+                        <HelpCircle size={32} />
+                    </motion.button>
+                )}
+            </AnimatePresence>
 
             {/* Help Modal */}
-            {showHelp && <HelpModal onClose={() => setShowHelp(false)} />}
+            <AnimatePresence>
+                {showHelp && <HelpModal onClose={() => setShowHelp(false)} />}
+            </AnimatePresence>
 
             {/* Floating Cart */}
             <FloatingCart isOpen={showCart} onClose={() => setShowCart(false)} onOpen={() => setShowCart(true)} />

@@ -13,6 +13,7 @@ interface AppContextType {
   clearCart: () => void;
   setUser: (user: User | null) => void;
   signIn: (phone: string, password: string) => User | null;
+  signInWithFaceId: () => User | null;
   registerUser: (user: User) => void;
   addReceipt: (receipt: Receipt) => void;
 }
@@ -83,6 +84,16 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     return null;
   };
 
+  const signInWithFaceId = (): User | null => {
+    // Find a user with faceIdEnrolled (simulating face recognition)
+    const foundUser = users.find((u) => u.faceIdEnrolled === true);
+    if (foundUser) {
+      setUser(foundUser);
+      return foundUser;
+    }
+    return null;
+  };
+
   const registerUser = (newUser: User) => {
     setUsers((prev) => [...prev, newUser]);
     setUser(newUser);
@@ -105,6 +116,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         clearCart,
         setUser,
         signIn,
+        signInWithFaceId,
         registerUser,
         addReceipt,
       }}

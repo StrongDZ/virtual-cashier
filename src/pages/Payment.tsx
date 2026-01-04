@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreditCard, User, Loader2, CheckCircle, Printer, Mail, X, ScanLine } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -74,10 +74,14 @@ const Payment = () => {
         }
     };
 
-    const handleFaceIdClick = () => {
+    const handleFaceIdClick = useCallback(() => {
         setPaymentMethod("faceid");
         setShowFaceIdScan(true);
-    };
+    }, []);
+
+    const handleCardClick = useCallback(() => {
+        setPaymentMethod("card");
+    }, []);
 
     const handleStartScan = () => {
         setIsScanning(true);
@@ -116,7 +120,7 @@ const Payment = () => {
         setPaymentMethod(null);
     };
 
-    const handlePayment = () => {
+    const handlePayment = useCallback(() => {
         if (!paymentMethod) return;
         setIsProcessing(true);
         showToast("Processing payment...", "info");
@@ -135,7 +139,40 @@ const Payment = () => {
             clearCart();
             showToast("Payment successful!", "success");
         }, 2000);
-    };
+    }, [paymentMethod, cart, total, addReceipt, clearCart, showToast]);
+
+    // Listen for voice commands
+    useEffect(() => {
+        const handleSelectCard = () => {
+            handleCardClick();
+            showToast("Card payment selected", "info");
+        };
+
+        const handleSelectFaceId = () => {
+            handleFaceIdClick();
+        };
+
+        const handleConfirmPayment = () => {
+            if (paymentMethod) {
+                if (paymentMethod === "card") {
+                    handlePayment();
+                }
+                // FaceID requires the scan modal flow
+            } else {
+                showToast("Please select a payment method first", "info");
+            }
+        };
+
+        window.addEventListener('voice-select-card', handleSelectCard);
+        window.addEventListener('voice-select-faceid', handleSelectFaceId);
+        window.addEventListener('voice-confirm-payment', handleConfirmPayment);
+
+        return () => {
+            window.removeEventListener('voice-select-card', handleSelectCard);
+            window.removeEventListener('voice-select-faceid', handleSelectFaceId);
+            window.removeEventListener('voice-confirm-payment', handleConfirmPayment);
+        };
+    }, [handleCardClick, handleFaceIdClick, handlePayment, paymentMethod, showToast]);
 
     const handleRatingClick = (stars: number) => {
         setRating(stars);
@@ -275,7 +312,7 @@ const Payment = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 {/* Credit Card - Apple Pay Style */}
                 <motion.button
-                    onClick={() => setPaymentMethod("card")}
+                    onClick={handleCardClick}
                     className={`glass-card rounded-2xl p-8 relative overflow-hidden transition-all ${
                         paymentMethod === "card" ? "ring-4 ring-accent scale-105" : "hover:scale-102"
                     }`}

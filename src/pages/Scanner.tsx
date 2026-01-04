@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShoppingCart, Plus, Minus, Trash2, CreditCard, ScanLine } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -14,7 +14,9 @@ const Scanner = () => {
   const { showToast } = useToast();
   const [isScanning, setIsScanning] = useState(false);
 
-  const handleSimulateScan = () => {
+  const handleSimulateScan = useCallback(() => {
+    if (isScanning) return;
+    
     setIsScanning(true);
     setTimeout(() => {
       const product = getRandomProduct();
@@ -23,7 +25,19 @@ const Scanner = () => {
       showToast(`${product.name} (Size: ${defaultSize}) added to cart!`, 'success');
       setIsScanning(false);
     }, 1500);
-  };
+  }, [isScanning, addToCart, showToast]);
+
+  // Listen for voice commands
+  useEffect(() => {
+    const handleVoiceScan = () => {
+      handleSimulateScan();
+    };
+
+    window.addEventListener('voice-scan-item', handleVoiceScan);
+    return () => {
+      window.removeEventListener('voice-scan-item', handleVoiceScan);
+    };
+  }, [handleSimulateScan]);
 
   const total = cart.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
@@ -154,7 +168,7 @@ const Scanner = () => {
                   <AnimatePresence>
                     {cart.map((item, index) => (
                       <motion.div
-                        key={item.product.id}
+                        key={`${item.product.id}-${item.selectedSize}`}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 20 }}
