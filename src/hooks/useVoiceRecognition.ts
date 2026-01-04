@@ -66,7 +66,7 @@ export const useVoiceRecognition = (
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const commandsRef = useRef(commands);
   const continuousModeRef = useRef(isContinuousMode);
-  const restartTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const restartTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Update refs when values change
   useEffect(() => {
