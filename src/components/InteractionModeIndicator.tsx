@@ -79,7 +79,7 @@ const InteractionModeIndicator = () => {
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="absolute right-0 top-full mt-2 w-72 glass-card rounded-xl border border-white/10 p-2 z-50"
+              className="absolute right-0 top-full mt-2 w-72 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-white/20 p-2 z-50 shadow-2xl"
             >
               <p className="text-xs text-gray-400 px-3 py-2 border-b border-white/10 mb-2">
                 Interaction Mode
