@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AppProvider } from "./context/AppContext";
 import { ToastProvider } from "./components/ui/ToastProvider";
 import { VoiceProvider } from "./context/VoiceContext";
@@ -8,7 +8,6 @@ import Catalogue from "./pages/Catalogue";
 import Scanner from "./pages/Scanner";
 import Payment from "./pages/Payment";
 import Return from "./pages/Return";
-import Help from "./pages/Help";
 import Signup from "./pages/Signup";
 import TryOn from "./pages/TryOn";
 import Account from "./pages/Account";
@@ -29,7 +28,7 @@ function App() {
                                 <Route path="/scanner" element={<Scanner />} />
                                 <Route path="/payment" element={<Payment />} />
                                 <Route path="/return" element={<Return />} />
-                                <Route path="/help" element={<Help />} />
+                                <Route path="/help" element={<Navigate to="/" replace />} />
                                 <Route path="/signup" element={<Signup />} />
                                 <Route path="/try-on" element={<TryOn />} />
                                 <Route path="/account" element={<Account />} />

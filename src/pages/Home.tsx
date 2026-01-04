@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Package, RotateCcw, UserPlus, Sparkles, ArrowRight } from 'lucide-react';
+import { ShoppingCart, Package, RotateCcw, UserPlus, Sparkles, ArrowRight, Camera } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useApp } from '../context/AppContext';
@@ -56,11 +56,11 @@ const Home = () => {
       gradient: 'from-purple-500 to-purple-600',
     },
     {
-      icon: UserPlus,
-      title: 'Help',
-      subtitle: 'Get Assistance',
-      to: '/help',
-      gradient: 'from-green-500 to-green-600',
+      icon: Camera,
+      title: 'Virtual Try-On',
+      subtitle: 'See How Items Look',
+      to: '/try-on',
+      gradient: 'from-pink-500 to-rose-600',
     },
   ];
 

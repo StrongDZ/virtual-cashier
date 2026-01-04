@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HelpCircle, ShoppingCart, User } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,15 +16,11 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
     const navigate = useNavigate();
-    const location = useLocation();
     const [showHelp, setShowHelp] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const { cart, user } = useApp();
     const { interactionMode } = useVoice();
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    // Hide help button when on help page
-    const isOnHelpPage = location.pathname === '/help' || location.pathname.includes('/help');
 
     return (
         <div className="min-h-screen flex flex-col bg-slate-900">
@@ -108,24 +104,19 @@ const Layout = ({ children }: LayoutProps) => {
                 </div>
             </footer>
 
-            {/* Floating Help Button - Hidden on Help page */}
-            <AnimatePresence>
-                {!isOnHelpPage && (
-                    <motion.button
-                        onClick={() => setShowHelp(true)}
-                        className="fixed bottom-8 right-8 bg-gradient-to-r from-accent to-accent-dark text-slate-900 rounded-full p-6 shadow-2xl z-50 touch-target"
-                        aria-label="Help"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        exit={{ scale: 0 }}
-                        transition={{ type: "spring", delay: 0.5 }}
-                    >
-                        <HelpCircle size={32} />
-                    </motion.button>
-                )}
-            </AnimatePresence>
+            {/* Floating Help Button */}
+            <motion.button
+                onClick={() => setShowHelp(true)}
+                className="fixed bottom-8 right-8 bg-gradient-to-r from-accent to-accent-dark text-slate-900 rounded-full p-6 shadow-2xl z-50 touch-target"
+                aria-label="Help"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", delay: 0.5 }}
+            >
+                <HelpCircle size={32} />
+            </motion.button>
 
             {/* Help Modal */}
             <AnimatePresence>

@@ -77,14 +77,14 @@ export const VoiceProvider = ({ children }: { children: ReactNode }) => {
         description: 'Go to returns page',
       },
       {
-        command: 'Get Help',
-        keywords: ['help', 'assistance', 'support', 'help me'],
+        command: 'Virtual Try On',
+        keywords: ['try on', 'virtual try', 'try clothes', 'fitting room'],
         action: () => {
-          navigate('/help');
-          showToast('Opening Help', 'info');
-          setLastCommand('Get Help');
+          navigate('/try-on');
+          showToast('Opening Virtual Try-On', 'info');
+          setLastCommand('Virtual Try On');
         },
-        description: 'Get assistance',
+        description: 'Go to virtual try-on',
       },
     ];
 

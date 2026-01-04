@@ -48,4 +48,14 @@
   .text-gradient-blue {
     @apply bg-gradient-to-r from-accent-electric to-blue-400 bg-clip-text text-transparent;
   }
+  
+  /* Hide scrollbar for swipe elements */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
