@@ -1,144 +1,97 @@
-import { Mic, Hand, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Mic, Hand } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useVoice } from '../context/VoiceContext';
 
 const InteractionModeIndicator = () => {
   const { interactionMode, setInteractionMode, isListening, isSupported } = useVoice();
-  const [showDropdown, setShowDropdown] = useState(false);
 
   const modes = [
     {
       id: 'voice-touch' as const,
-      label: 'Voice + Touch',
+      label: 'Voice+Touch',
+      shortLabel: 'Voice',
       icon: Mic,
-      description: 'AI continuously listens',
-      color: 'from-purple-500 to-purple-600',
       disabled: !isSupported,
     },
     {
       id: 'touch' as const,
       label: 'Touch Only',
+      shortLabel: 'Touch',
       icon: Hand,
-      description: 'Use touch controls',
-      color: 'from-blue-500 to-blue-600',
+      disabled: false,
     },
   ];
 
-  const currentMode = modes.find(m => m.id === interactionMode) || modes[0];
-  const CurrentIcon = currentMode.icon;
-
   return (
-    <div className="relative">
-      {/* Mode Button */}
-      <motion.button
-        onClick={() => setShowDropdown(!showDropdown)}
-        className={`flex items-center gap-2 px-4 py-2 rounded-xl glass border transition-all ${
-          isListening ? 'border-green-400 bg-green-500/20' : 'border-white/10 hover:border-white/30'
-        }`}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <div className="relative">
-          <CurrentIcon size={20} className={isListening ? 'text-green-400' : 'text-white'} />
-          {isListening && (
-            <motion.div
-              className="absolute -inset-1 bg-green-400/30 rounded-full"
-              animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-              transition={{ repeat: Infinity, duration: 1 }}
-            />
-          )}
-        </div>
-        <span className="text-sm font-medium text-white hidden sm:inline">
-          {currentMode.label}
-        </span>
-        {isListening && (
-          <span className="text-xs text-green-400 hidden md:inline">● Listening</span>
-        )}
-        <ChevronDown
-          size={16}
-          className={`text-gray-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`}
-        />
-      </motion.button>
-
-      {/* Dropdown Menu */}
-      <AnimatePresence>
-        {showDropdown && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-40"
-              onClick={() => setShowDropdown(false)}
-            />
-
-            {/* Menu */}
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="absolute right-0 top-full mt-2 w-72 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-white/20 p-2 z-50 shadow-2xl"
-            >
-              <p className="text-xs text-gray-400 px-3 py-2 border-b border-white/10 mb-2">
-                Interaction Mode
-              </p>
-              
-              {modes.map((mode) => {
-                const Icon = mode.icon;
-                const isActive = interactionMode === mode.id;
-                const isDisabled = mode.disabled;
-                
-                return (
-                  <motion.button
-                    key={mode.id}
-                    onClick={() => {
-                      if (!isDisabled) {
-                        setInteractionMode(mode.id);
-                        setShowDropdown(false);
-                      }
-                    }}
-                    disabled={isDisabled}
-                    className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all ${
-                      isDisabled
-                        ? 'opacity-50 cursor-not-allowed'
-                        : isActive
-                        ? 'bg-accent/20 border border-accent/50'
-                        : 'hover:bg-white/10'
-                    }`}
-                    whileHover={!isDisabled ? { x: 4 } : {}}
-                    whileTap={!isDisabled ? { scale: 0.98 } : {}}
-                  >
-                    <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${mode.color} flex items-center justify-center`}>
-                      <Icon size={20} className="text-white" />
-                    </div>
-                    <div className="flex-1 text-left">
-                      <p className={`font-medium ${isActive ? 'text-accent' : 'text-white'}`}>
-                        {mode.label}
-                      </p>
-                      <p className="text-xs text-gray-400">{mode.description}</p>
-                    </div>
-                    {isActive && (
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="w-2 h-2 bg-accent rounded-full"
-                      />
-                    )}
-                  </motion.button>
-                );
-              })}
-
-              {!isSupported && (
-                <p className="text-xs text-orange-400 px-3 py-2 mt-2 border-t border-white/10">
-                  ⚠️ Voice not supported in this browser
-                </p>
+    <div className="flex items-center gap-1 p-1 glass rounded-xl">
+      {modes.map((mode) => {
+        const Icon = mode.icon;
+        const isActive = interactionMode === mode.id;
+        const isDisabled = mode.disabled;
+        const isVoiceListening = mode.id === 'voice-touch' && isListening;
+        
+        return (
+          <motion.button
+            key={mode.id}
+            onClick={() => {
+              if (!isDisabled) {
+                setInteractionMode(mode.id);
+              }
+            }}
+            disabled={isDisabled}
+            className={`relative flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${
+              isDisabled
+                ? 'opacity-40 cursor-not-allowed'
+                : isActive
+                ? 'bg-accent text-slate-900 font-bold shadow-lg'
+                : 'text-white hover:bg-white/10'
+            }`}
+            whileHover={!isDisabled ? { scale: 1.02 } : {}}
+            whileTap={!isDisabled ? { scale: 0.98 } : {}}
+            title={isDisabled ? 'Voice not supported in this browser' : mode.label}
+          >
+            {/* Listening animation for voice mode */}
+            {isVoiceListening && (
+              <motion.div
+                className="absolute inset-0 bg-green-400/20 rounded-lg"
+                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+              />
+            )}
+            
+            <div className="relative z-10">
+              <Icon 
+                size={18} 
+                className={isVoiceListening ? 'text-green-400' : isActive ? 'text-slate-900' : 'text-white'} 
+              />
+              {isVoiceListening && (
+                <motion.div
+                  className="absolute -inset-1 bg-green-400/40 rounded-full"
+                  animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ repeat: Infinity, duration: 1 }}
+                />
               )}
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            </div>
+            
+            {/* Full label on larger screens, short on small */}
+            <span className="text-sm font-medium hidden sm:inline relative z-10">
+              {mode.label}
+            </span>
+            <span className="text-sm font-medium sm:hidden relative z-10">
+              {mode.shortLabel}
+            </span>
+            
+            {/* Listening indicator dot */}
+            {isVoiceListening && (
+              <motion.div
+                className="w-2 h-2 bg-green-400 rounded-full relative z-10"
+                animate={{ opacity: [1, 0.5, 1] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+              />
+            )}
+          </motion.button>
+        );
+      })}
     </div>
   );
 };
