@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Package, X, Search, Filter } from 'lucide-react';
+import { Package, X, Search, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { mockProducts } from '../data/MockData';
 import type { Product } from '../data/MockData';
@@ -11,6 +11,8 @@ import FilterModal from '../components/ui/FilterModal';
 import BackButton from '../components/ui/BackButton';
 import { useApp } from '../context/AppContext';
 import { useToast } from '../components/ui/ToastProvider';
+
+const PRODUCTS_PER_PAGE = 6;
 
 const Catalogue = () => {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ const Catalogue = () => {
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [productToAdd, setProductToAdd] = useState<Product | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const toggleFilter = (value: string, selected: string[], setter: (value: string[]) => void) => {
     if (selected.includes(value)) {
@@ -56,23 +59,37 @@ const Catalogue = () => {
     };
   }, [showToast]);
 
-  const filteredProducts = mockProducts.filter((product) => {
-    const categoryMatch = 
-      selectedCategory.length === 0 || selectedCategory.includes(product.category);
-    const sizeMatch = 
-      selectedSize.length === 0 || product.size.some((s) => selectedSize.includes(s));
-    const seasonMatch = 
-      selectedSeason.length === 0 || (product.season && selectedSeason.includes(product.season));
-    const brandMatch = 
-      selectedBrand.length === 0 || (product.brand && selectedBrand.includes(product.brand));
-    const clothingTypeMatch = 
-      selectedClothingType.length === 0 || (product.clothingType && selectedClothingType.includes(product.clothingType));
-    const searchMatch = 
-      searchQuery === '' ||
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return categoryMatch && sizeMatch && seasonMatch && brandMatch && clothingTypeMatch && searchMatch;
-  });
+  const filteredProducts = useMemo(() => {
+    return mockProducts.filter((product) => {
+      const categoryMatch = 
+        selectedCategory.length === 0 || selectedCategory.includes(product.category);
+      const sizeMatch = 
+        selectedSize.length === 0 || product.size.some((s) => selectedSize.includes(s));
+      const seasonMatch = 
+        selectedSeason.length === 0 || (product.season && selectedSeason.includes(product.season));
+      const brandMatch = 
+        selectedBrand.length === 0 || (product.brand && selectedBrand.includes(product.brand));
+      const clothingTypeMatch = 
+        selectedClothingType.length === 0 || (product.clothingType && selectedClothingType.includes(product.clothingType));
+      const searchMatch = 
+        searchQuery === '' ||
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      return categoryMatch && sizeMatch && seasonMatch && brandMatch && clothingTypeMatch && searchMatch;
+    });
+  }, [selectedCategory, selectedSize, selectedSeason, selectedBrand, selectedClothingType, searchQuery]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    return filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+  }, [filteredProducts, currentPage]);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, selectedSize, selectedSeason, selectedBrand, selectedClothingType, searchQuery]);
 
   const activeFiltersCount = [
     selectedCategory.length > 0,
@@ -169,38 +186,146 @@ const Catalogue = () => {
         </motion.div>
       )}
 
-      {/* Product Grid */}
-      <AnimatePresence mode="wait">
-        {filteredProducts.length > 0 ? (
-          <motion.div
-            key="products"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      {/* Product Grid - Fixed minimum height to prevent pagination jumping */}
+      <div className="min-h-[600px]">
+        <AnimatePresence mode="wait">
+          {filteredProducts.length > 0 ? (
+            <motion.div
+              key={`products-page-${currentPage}`}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {paginatedProducts.map((product, index) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  index={index}
+                  onAdd={() => setProductToAdd(product)}
+                  onClick={setSelectedProduct}
+                />
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="empty"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-center py-16"
+            >
+              <p className="text-2xl text-gray-400">No products found</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="flex items-center justify-center gap-3 mt-8"
+        >
+          {/* Previous Button - Yellow & Larger */}
+          <motion.button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`p-4 rounded-2xl transition-all ${
+              currentPage === 1
+                ? 'bg-accent/30 text-accent/50 cursor-not-allowed'
+                : 'bg-accent text-slate-900 hover:bg-accent-light shadow-lg'
+            }`}
+            whileHover={currentPage !== 1 ? { scale: 1.1 } : {}}
+            whileTap={currentPage !== 1 ? { scale: 0.95 } : {}}
           >
-              {filteredProducts.map((product, index) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                index={index}
-                onAdd={() => setProductToAdd(product)}
-                onClick={setSelectedProduct}
-              />
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div
-            key="empty"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="text-center py-16"
+            <ChevronLeft size={32} />
+          </motion.button>
+
+          {/* Page Numbers with Ellipsis */}
+          <div className="flex items-center gap-2">
+            {(() => {
+              const pages: (number | string)[] = [];
+              
+              if (totalPages <= 5) {
+                // Show all pages if 5 or fewer
+                for (let i = 1; i <= totalPages; i++) {
+                  pages.push(i);
+                }
+              } else {
+                // Always show first page
+                pages.push(1);
+                
+                if (currentPage > 3) {
+                  pages.push('...');
+                }
+                
+                // Show pages around current
+                const start = Math.max(2, currentPage - 1);
+                const end = Math.min(totalPages - 1, currentPage + 1);
+                
+                for (let i = start; i <= end; i++) {
+                  if (!pages.includes(i)) {
+                    pages.push(i);
+                  }
+                }
+                
+                if (currentPage < totalPages - 2) {
+                  pages.push('...');
+                }
+                
+                // Always show last page
+                if (!pages.includes(totalPages)) {
+                  pages.push(totalPages);
+                }
+              }
+              
+              return pages.map((page, index) => (
+                page === '...' ? (
+                  <span key={`ellipsis-${index}`} className="text-gray-400 px-2 text-xl">
+                    ...
+                  </span>
+                ) : (
+                  <motion.button
+                    key={page}
+                    onClick={() => setCurrentPage(page as number)}
+                    className={`w-12 h-12 rounded-xl font-bold text-lg transition-all ${
+                      currentPage === page
+                        ? 'bg-accent text-slate-900 shadow-lg'
+                        : 'glass text-white hover:bg-white/20'
+                    }`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {page}
+                  </motion.button>
+                )
+              ));
+            })()}
+          </div>
+
+          {/* Next Button - Yellow & Larger */}
+          <motion.button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`p-4 rounded-2xl transition-all ${
+              currentPage === totalPages
+                ? 'bg-accent/30 text-accent/50 cursor-not-allowed'
+                : 'bg-accent text-slate-900 hover:bg-accent-light shadow-lg'
+            }`}
+            whileHover={currentPage !== totalPages ? { scale: 1.1 } : {}}
+            whileTap={currentPage !== totalPages ? { scale: 0.95 } : {}}
           >
-            <p className="text-2xl text-gray-400">No products found</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <ChevronRight size={32} />
+          </motion.button>
+
+          {/* Page Info */}
+          <span className="text-gray-400 ml-4 text-sm">
+            {filteredProducts.length} sản phẩm
+          </span>
+        </motion.div>
+      )}
 
       {/* Product Detail Modal */}
       <AnimatePresence>
